@@ -1,0 +1,19 @@
+name: integration-dispatch
+
+# Trivial workflow for the hot.dev/github actions integration tests.
+# Dispatched via actions/dispatch-workflow; must keep this trigger and
+# file name.
+on:
+  workflow_dispatch:
+    inputs:
+      marker:
+        description: Free-form marker passed by the integration tests
+        required: false
+        default: none
+
+jobs:
+  ack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge dispatch
+        run: echo "dispatched with marker=${{ inputs.marker }}"
